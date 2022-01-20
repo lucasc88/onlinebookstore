@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style-admin.css" />
+</h:head>
+
+<ui:composition template="/templates/_admin_template.xhtml">
+
+	<ui:param name="list" value="true"/>
+	
+	<ui:define name="body">
+		<h1>Books List</h1>
+
+		<!-- to show the msg when new book is registered -->
+		<h:messages />
+
+		<h:dataTable class="table table-bordered table-striped table-hover"
+			var="book" value="#{adminListBookBean.books}">
+			<h:column>
+				<f:facet name="header">Title</f:facet>
+            #{book.title}
+    </h:column>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+            #{book.description}
+        </h:column>
+			<h:column>
+				<f:facet name="header">Pages</f:facet>
+            #{book.numberOfPages}
+    </h:column>
+			<h:column>
+				<f:facet name="header">Price</f:facet>
+            #{book.price}
+    </h:column>
+			<h:column>
+				<f:facet name="header">Authors</f:facet>
+				<ui:repeat value="#{book.authors}" var="author">
+                #{author.name},
+        </ui:repeat>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Publication Date</f:facet>
+				<h:outputText value="#{book.publicationDate}"
+					converter="#{calendarConverter}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Book Cover</f:facet>
+				<img src="#{request.contextPath}/file/#{book.bookCoverPath}"
+					alt="#{book.title}" style="width: 200px;" />
+			</h:column>
+		</h:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

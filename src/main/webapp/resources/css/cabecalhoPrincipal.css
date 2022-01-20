@@ -1,0 +1,85 @@
+.mainHeaderBookStore {
+	background-color: #EE2B69;
+	position: relative;
+	height: 55px;
+	z-index: 99;
+}
+
+.mainHeaderBookStore-titulo{
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 0;
+}
+
+.mainHeaderBookStore-linkTitulo {
+	display: inline-block;
+}
+
+.mainHeaderBookStore-navegation {
+	height: 100%;
+	float: right;
+}
+
+.mainHeaderBookStore-itemNavegacao {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	float: left;
+}
+
+.mainHeaderBookStore-iconeItemNavegacao {
+	height: 100%;
+	padding: 1em;
+	box-sizing: border-box;
+}
+
+.mainHeaderBookStore-categoriasEBusca {
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	left: 0;
+}
+
+
+#navegacaoCabecalho:target .mainHeaderBookStore-escondeCategoriasEBusca,
+#navegacaoCabecalho:not(:target) .mainHeaderBookStore-mostraCategoriasEBusca {
+	display: inline-block;
+}
+
+#navegacaoCabecalho:not(:target) .mainHeaderBookStore-escondeCategoriasEBusca,
+#navegacaoCabecalho:target .mainHeaderBookStore-mostraCategoriasEBusca {
+	display: none;
+}
+
+.mainHeaderBookStore-escondeCategoriasEBusca {
+	background-color: rgba(0,0,0,.3);
+}
+
+#navegacaoCabecalho:target .colecoesDaCDC,
+#navegacaoCabecalho:target .buscaPrincipal {
+	display: block;
+}
+
+@media screen and (max-width: 624px) {
+	#navegacaoCabecalho:not(:target) .buscaPrincipal,
+	#navegacaoCabecalho:not(:target) .colecoesDaCDC {
+		display: none;
+	}
+}
+@media screen and (min-width: 625px) {
+	.mainHeaderBookStore {
+		margin-bottom: 2.75em;
+	}
+	#navegacaoCabecalho:not(:target) .mainHeaderBookStore-escondeCategoriasEBusca,
+	#navegacaoCabecalho:not(:target) .mainHeaderBookStore-mostraCategoriasEBusca,
+	#navegacaoCabecalho:target .mainHeaderBookStore-escondeCategoriasEBusca,
+	#navegacaoCabecalho:target .mainHeaderBookStore-mostraCategoriasEBusca {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.mainHeaderBookStore {
+		margin-bottom: 0;
+	}
+}

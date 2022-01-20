@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"></meta>
+<meta name="viewport" content="width=device-width"></meta>
+
+<title>Books on Java, SOA, Android, iPhone, Ruby on Rails and
+	more</title>
+
+<script type="text/javascript" async=""
+	src="#{request.contextPath}/resources/js/pixel.js"></script>
+<script type="text/javascript" async=""
+	src="#{request.contextPath}/resources/js/analytics.js"></script>
+<script type="text/javascript" async=""
+	src="#{request.contextPath}/resources/js/userreport.js"></script>
+<script src="#{request.contextPath}/resources/js/eoo8tyd.js" async=""></script>
+<script async=""
+	src="#{request.contextPath}/resources/js/trekkie.storefront.min.js"></script>
+<script async=""
+	src="#{request.contextPath}/resources/js/shop_events_listener-002c206011fad5a2879a7a294d2ab2bc92451d9e2b5bbd0e634db3265e15665e.js"></script>
+<script type="text/javascript"
+	src="#{request.contextPath}/resources/js/ga_urchin_forms-0826cdefee6590321eb5c0c435eeebf7a8425a5493a9e95059c40e07e069ad52.js"></script>
+
+<link rel="stylesheet"
+	href="#{request.contextPath}/resources/css/style.css"></link>
+
+<link rel="stylesheet" href="#{request.contextPath}/resources/css/l"
+	media="all"></link>
+<script src="#{request.contextPath}/resources/js/settings.js" async=""
+	class="lazyload" charset="utf-8"></script>
+<script src="#{request.contextPath}/resources/js/SystemSettings.js"
+	async="" class="lazyload" charset="utf-8"></script>
+
+<style type="text/css" media="screen">
+#urp-f-1 {
+	visibility: hidden
+}
+
+#urp-f-1 {
+	visibility: visible
+}
+
+#urp-f-2 {
+	visibility: hidden
+}
+
+#urp-f-2 {
+	visibility: visible
+}
+</style>
+<script src="#{request.contextPath}/resources/js/analytics-tags.js"
+	async="" class="lazyload" charset="utf-8"></script>
+<script type="text/javascript"
+	src="#{request.contextPath}/resources/js/pub_5d9e31afbcac9492bffa.js"></script>
+<script type="text/javascript"
+	src="#{request.contextPath}/resources/js/jquery.min.js"></script>
+</head>
+
+<body>
+	<ui:composition template="/templates/_index_template.xhtml">
+
+		<ui:define name="body">
+			<script type="text/javascript">
+				window.onload = function() {
+					if (window.location.href.indexOf("Successful+Purchase") != -1) {
+						alert("Successful Purchase!");
+					}
+				}
+			</script>
+			<section class="vitrineDestaquinho container">
+				<h2 class="vitrineDestaquinho-titulo">Last Releases</h2>
+				<ul class="vitrineDestaquinho-lista">
+
+					<ui:repeat value="#{homeBean.lastReleases()}" var="book">
+						<li class="livroNaVitrine vitrineDaColecao-produto"><a
+							href="#{request.contextPath}/book-detail.xhtml?id=#{book.id}"
+							class="livroNaVitrine-link" title="#{book.title}">
+								<div class="livroNaVitrine-imagemContainer" role="presentation">
+									<img class="livroNaVitrine-imagem"
+										src="#{request.contextPath}/file/#{book.bookCoverPath}"
+										alt="#{book.title}" title="#{book.title}" />
+								</div> <span class="livroNaVitrine-nome">#{book.title}</span>
+						</a></li>
+					</ui:repeat>
+				</ul>
+			</section>
+
+
+			<h3 class="homeCall container">All Our Books</h3>
+
+			<section class="vitrineDaColecao container">
+				<ul class="vitrineDaColecao-lista">
+					<ui:repeat value="#{homeBean.otherBooks()}" var="book">
+						<li class="livroNaVitrine vitrineDaColecao-produto"><a
+							href="#{request.contextPath}/book-detail.xhtml?id=#{book.id}"
+							class="livroNaVitrine-link" title="#{book.title}">
+								<div class="livroNaVitrine-imagemContainer" role="presentation">
+									<img class="livroNaVitrine-imagem"
+										src="#{request.contextPath}/file/#{book.bookCoverPath}"
+										alt="#{book.title}" title="#{book.title}" />
+								</div> <span class="livroNaVitrine-nome">#{book.title}</span>
+						</a></li>
+					</ui:repeat>
+				</ul>
+			</section>
+
+
+			<div class="buscaDoRodape container" role="presentation">
+				<form role="search" aria-labelledby="rotuloBuscaDoRodape"
+					method="GET" jsf:id="formCollectionKeyword"
+					class="buscaDoRodape-formulario">
+					<label id="rotuloBuscaRodape" class="buscaDoRodape-rotuloEscondido"
+						for="campoBuscaRodape">Search by author, title, content...</label>
+					<label class="buscaDoRodape-rotulo" for="campoBuscaRodape">Can't
+						find your book?</label>
+					<fieldset class="buscaDoRodape-fieldset">
+						<input jsf:value="#{collectionBean.key}" id="campoBuscaRodape"
+							class="buscaDoRodape-campo"
+							placeholder="What are you looking for?" type="search" name="q"
+							required="" aria-required="" />
+						<button jsf:action="#{collectionBean.findByKeyWordSearch()}"
+							class="buscaDoRodape-enviar" type="submit">Search</button>
+					</fieldset>
+				</form>
+			</div>
+			<script>
+				//ws:// is the protocol for WebSocket
+				var channel = new WebSocket(
+						"ws://localhost:8080/#{request.contextPath}/channel/promo");
+				channel.onmessage = function(message) {
+					var newPromo = JSON.parse(message.data);
+					if (confirm("How about taking advantage of the lightning sale: "
+							+ newPromo.title)) {
+						document.location.href = "#{request.contextPath}/book-detail.xhtml?id="
+								+ newPromo.id;
+					}
+				};
+			</script>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

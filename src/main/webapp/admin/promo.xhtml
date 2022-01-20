@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style-admin.css" />
+</h:head>
+
+<ui:composition template="/templates/_admin_template.xhtml">
+
+	<ui:param name="promo" value="true" />
+
+	<ui:define name="body">
+		<h1>Send Lightning Promotion</h1>
+
+		<h:form enctype="multipart/form-data">
+			<div class="form-group">
+				<h:outputLabel value="Promotion Title" />
+				<h:inputText value="#{adminPromoBean.promo.title}" required="true"
+					id="title" styleClass="form-control" />
+				<h:message for="title" />
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel value="Percentage Discount Amount (%)" />
+				<h:inputText value="#{adminPromoBean.promo.discount}" required="true"
+					id="discount" styleClass="form-control" />
+				<h:message for="discount" />
+			</div>
+			
+			<div class="form-group">
+				<h:outputLabel value="Books" for="books" />
+				<h:selectOneMenu value="#{adminPromoBean.promo.book.id}"
+					converter="javax.faces.Integer" id="books"
+					styleClass="form-control">
+					<f:selectItems value="#{adminListBookBean.books}" var="book"
+						itemValue="#{book.id}" itemLabel="#{book.title}" />
+				</h:selectOneMenu>
+				<h:message for="books" />
+			</div>
+			<h:commandButton value="Send Promotion" action="#{adminPromoBean.send()}"
+				styleClass="btn btn-primary" />
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
